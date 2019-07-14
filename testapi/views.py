@@ -1,21 +1,12 @@
 from django.http import JsonResponse, HttpResponse
-from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework import response
-from rest_framework.decorators import permission_classes
-from rest_framework.parsers import JSONParser
-from rest_framework.permissions import AllowAny
 import json
-
-from rest_framework.renderers import JSONRenderer
 
 from testapi.models import KeyWordData
 from testapi.serializers import KeyWordDataSerializer
-from testapi.tasks import search_func
 
 
 @csrf_exempt
-@permission_classes((AllowAny,))
 def items_list(request):
     if request.method == "GET":
         data = KeyWordData.objects.all()
@@ -46,7 +37,6 @@ def item_detail(request, pk):
 
 @csrf_exempt
 def video_results(request, pk):
-    search_func()
     try:
         current_record = KeyWordData.objects.get(id=pk)
     except KeyWordData.DoesNotExist:
