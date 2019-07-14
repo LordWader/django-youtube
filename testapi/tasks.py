@@ -6,7 +6,7 @@ from testapi.celery import app
 from testapi.models import KeyWordData, YouTubeVideo
 
 SEARCH_URL = "https://www.googleapis.com/youtube/v3/search"
-DEVELOPER_KEY = "AIzaSyCmq9ngxNoyz2fjLMtz5wZDIcR93xZhhRI"
+DEVELOPER_KEY = "DEVELOPER_KEY"
 
 
 @app.task
