@@ -4,9 +4,11 @@ import json
 
 from testapi.models import KeyWordData
 from testapi.serializers import KeyWordDataSerializer
+from testapi.decorators import authorization
 
 
 @csrf_exempt
+@authorization
 def items_list(request):
     if request.method == "GET":
         data = KeyWordData.objects.all()
@@ -24,6 +26,7 @@ def items_list(request):
 
 
 @csrf_exempt
+@authorization
 def item_detail(request, pk):
     try:
         current_record = KeyWordData.objects.get(id=pk)
@@ -36,6 +39,7 @@ def item_detail(request, pk):
 
 
 @csrf_exempt
+@authorization
 def video_results(request, pk):
     try:
         current_record = KeyWordData.objects.get(id=pk)
