@@ -1,6 +1,6 @@
 # django-youtube
 
-This is a small django web-application that works with youtubr api.
+This is a small django web-application that works with youtube api.
 
 ### Requirments
 ```
