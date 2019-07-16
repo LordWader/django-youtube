@@ -31,11 +31,12 @@ def item_detail(request, pk):
     try:
         current_record = KeyWordData.objects.get(id=pk)
     except KeyWordData.DoesNotExist:
-        return HttpResponse(status=404)
+        return HttpResponse(json.dumps({"error": "Specified id is not in database. Please enter correct id of "
+                                                 "record"}), status=400)
     if request.method == "DELETE":
         current_record.delete()
         return HttpResponse(status=200)
-    return HttpResponse(status=500)
+    return HttpResponse(json.dumps({"error": "Bad Request"}), status=400)
 
 
 @csrf_exempt
@@ -44,7 +45,8 @@ def video_results(request, pk):
     try:
         current_record = KeyWordData.objects.get(id=pk)
     except KeyWordData.DoesNotExist:
-        return HttpResponse(status=404)
+        return HttpResponse(json.dumps({"error": "Specified id is not in database. Please enter correct id of "
+                                                 "record"}), status=400)
     return JsonResponse({
         "key_word": current_record.key_word,
         "id": pk,
